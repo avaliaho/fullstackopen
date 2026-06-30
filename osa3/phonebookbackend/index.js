@@ -55,6 +55,13 @@ app.get('/api/persons', (request, response) => {
   response.json(persons)
 })
 
+app.get('/info', (request, response) => {
+  const date = new Date()
+  response.send(
+    `<p>Phonebook has info for ${persons.length} people</p><p>${date}</p>`
+  )
+})
+
 app.get('/api/persons/:id', (request, response) => {
   const id = request.params.id
   const person = persons.find((person) => person.id === id)
@@ -78,6 +85,12 @@ app.post('/api/persons', (request, response) => {
   if (!body.name || !body.number) {
     return response.status(400).json({
       error: 'content missing',
+    })
+  }
+
+  if (persons.find((person) => person.name === body.name)) {
+    return response.status(400).json({
+      error: 'name must be unique',
     })
   }
 
