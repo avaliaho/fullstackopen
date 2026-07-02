@@ -5,6 +5,8 @@ const app = express()
 // parse JSON bodies before logging so `req.body` is available to morgan
 app.use(express.json())
 
+app.use(express.static('dist'))
+
 const options = (tokens, req, res) => {
   return [
     tokens.method(req, res),
