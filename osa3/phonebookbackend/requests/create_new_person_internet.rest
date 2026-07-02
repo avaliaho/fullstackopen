@@ -1,0 +1,7 @@
+POST https://fullstackopen-phonebookbackend-ilam.onrender.com/api/persons
+Content-Type: application/json
+
+{
+  "name": "John Doe testing",
+  "number": "000"
+}
